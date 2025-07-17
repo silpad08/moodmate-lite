@@ -27,13 +27,16 @@ set_background('headset_bg.jpg')
 
 # Load environment variables
 def load_api_keys():
-    openai.api_key = st.secrets["OPENAI_API_KEY"]
-
-    sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(
-        client_id=st.secrets["SPOTIFY_CLIENT_ID"],
-        client_secret=st.secrets["SPOTIFY_CLIENT_SECRET"]
-    ))
-    return openai.api_key, st.secrets["SPOTIFY_CLIENT_ID"], st.secrets["SPOTIFY_CLIENT_SECRET"]
+    try:
+        openai_key = st.secrets["OPENAI_API_KEY"]
+        spotify_id = st.secrets["SPOTIFY_CLIENT_ID"]
+        spotify_secret = st.secrets["SPOTIFY_CLIENT_SECRET"]
+        st.write("✅ Secrets loaded successfully")
+    except KeyError as e:
+        st.error(f"❌ Missing secret: {e}")
+        raise
+    openai.api_key = openai_key
+    return openai_key, spotify_id, spotify_secret
 
 # Setup OpenAI client
 def setup_openai(api_key):
