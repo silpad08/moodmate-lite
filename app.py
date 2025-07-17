@@ -33,7 +33,7 @@ def load_api_keys():
         client_id=st.secrets["SPOTIFY_CLIENT_ID"],
         client_secret=st.secrets["SPOTIFY_CLIENT_SECRET"]
     ))
-    return openai.api_key, st.secrets["SPOTIPY_CLIENT_ID"], st.secrets["SPOTIPY_CLIENT_SECRET"]
+    return openai.api_key, st.secrets["SPOTIFY_CLIENT_ID"], st.secrets["SPOTIFY_CLIENT_SECRET"]
 
 # Setup OpenAI client
 def setup_openai(api_key):
