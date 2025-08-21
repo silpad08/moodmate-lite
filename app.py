@@ -31,9 +31,7 @@ def load_api_keys():
         openai_key = st.secrets["OPENAI_API_KEY"]
         spotify_id = st.secrets["SPOTIFY_CLIENT_ID"]
         spotify_secret = st.secrets["SPOTIFY_CLIENT_SECRET"]
-        st.write("✅ Secrets loaded successfully")
     except KeyError as e:
-        st.error(f"❌ Missing secret: {e}")
         raise
     openai.api_key = openai_key
     return openai_key, spotify_id, spotify_secret
